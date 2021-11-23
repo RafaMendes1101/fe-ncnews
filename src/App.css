@@ -1,8 +1,22 @@
 .App {
+  background: rgb(174, 229, 238);
+  background: radial-gradient(
+    circle,
+    rgba(174, 229, 238, 1) 20%,
+    rgba(118, 198, 193, 1) 73%
+  );
   text-align: center;
   min-height: 100vh;
 }
-
+.user_avatar {
+  width: 150px;
+  height: 150px;
+}
+.user_selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
 .Header {
   border: 2px green solid;
 }
