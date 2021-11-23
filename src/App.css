@@ -1,3 +1,15 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+}
+
+.Header {
+  border: 2px green solid;
+}
+.Nav {
+  border: 2px red solid;
+}
+
+.Articles {
+  border: 2px blue solid;
 }
