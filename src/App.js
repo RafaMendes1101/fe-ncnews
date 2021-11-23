@@ -8,21 +8,23 @@ import { UserContext } from "./contexts/user";
 import { useState } from "react";
 
 function App() {
-  const [users, setUsers] = useState({
+  const [currentUser, setCurrentUser] = useState({
     username: "",
     avatar_url: "",
     name: "",
   });
   return (
     <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Nav />
-        <Routes>
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/home" element={<Home />} />
-        </Routes>
-      </div>
+      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <div className="App">
+          <Header />
+          <Nav />
+          <Routes>
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/home" element={<Home />} />
+          </Routes>
+        </div>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }
