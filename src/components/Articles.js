@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getArticles } from "../utils/api";
 import Article from "./Article";
+import { UserContext } from "../contexts/user";
+import { Navigate } from "react-router-dom";
 
 export default function Articles() {
   const [articles, setArticles] = useState({});
   const [isLoading, setLoading] = useState(true);
+  const { currentUser } = useContext(UserContext);
+
   useEffect(() => {
     setLoading(true);
     let query = { sort: "article_id", order: "ASC" };
@@ -18,7 +22,11 @@ export default function Articles() {
         console.log(err);
       });
   }, []);
+
   if (isLoading) return <p>Loading...</p>;
+  if (currentUser.username === "") {
+    return <Navigate to="/home" />;
+  }
   return (
     <main className="Articles">
       <h1>Articles</h1>
