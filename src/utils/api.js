@@ -8,3 +8,9 @@ export const getUsers = () => {
     return res.data.users;
   });
 };
+
+export const getArticles = (query) => {
+  return newsApi.get("/articles", { params: query }).then((res) => {
+    return res.data.articles;
+  });
+};
