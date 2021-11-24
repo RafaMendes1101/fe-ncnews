@@ -6,6 +6,7 @@ import Articles from "./components/Articles";
 import Home from "./components/Home";
 import { UserContext } from "./contexts/user";
 import { useState } from "react";
+import Topics from "./components/Topics";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/articles" element={<Articles />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/topics" element={<Topics />} />
           </Routes>
         </div>
       </UserContext.Provider>
