@@ -14,3 +14,9 @@ export const getArticles = (query) => {
     return res.data.articles;
   });
 };
+
+export const getTopics = () => {
+  return newsApi.get("/topics").then((res) => {
+    return res.data.topics;
+  });
+};
