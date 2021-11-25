@@ -14,7 +14,7 @@ const ExpandArticle = (props) => {
     </div>
   );
 };
-export default function Article({ id, title, author, body }) {
+export default function Article({ id, title, body }) {
   const { setArticleId } = useContext(AppContext);
   return (
     <ExpandArticle title={title}>
