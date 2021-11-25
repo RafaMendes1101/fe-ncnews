@@ -7,6 +7,15 @@
   );
   text-align: center;
   min-height: 100vh;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+ul {
+  padding: 5px;
+}
+li {
+  list-style-type: none;
 }
 .user_avatar {
   width: 150px;
@@ -23,7 +32,9 @@
 .Nav {
   border: 2px red solid;
 }
-
+.Article {
+  border: 2px violet solid;
+}
 .Articles {
   border: 2px blue solid;
 }
