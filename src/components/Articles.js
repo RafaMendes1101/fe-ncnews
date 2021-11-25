@@ -1,13 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import { getArticles } from "../utils/api";
 import Article from "./Article";
-import { UserContext } from "../contexts/user";
+import { AppContext } from "../contexts/contexts";
 import { Navigate } from "react-router-dom";
 
 export default function Articles() {
   const [articles, setArticles] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(AppContext);
 
   useEffect(() => {
     setLoading(true);
@@ -36,6 +36,7 @@ export default function Articles() {
           return (
             <li key={article.article_id}>
               <Article
+                id={article.article_id}
                 title={article.title}
                 author={article.author}
                 body={article.body}
