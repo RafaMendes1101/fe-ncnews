@@ -19,7 +19,6 @@ export default function Article({ id, title, author, body }) {
   return (
     <ExpandArticle title={title}>
       <p>{body}</p>
-      <p>{author}</p>
       <Link
         onClick={() => {
           setArticleId(id);
