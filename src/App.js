@@ -14,6 +14,7 @@ function App() {
     avatar_url: "",
     name: "",
   });
+
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ currentUser, setCurrentUser }}>
@@ -22,7 +23,7 @@ function App() {
           <Nav />
           <Routes>
             <Route path="/articles" element={<Articles />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/topics" element={<Topics />} />
           </Routes>
         </div>
