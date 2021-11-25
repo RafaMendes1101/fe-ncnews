@@ -38,3 +38,12 @@ export const getComments = (article_id) => {
     return res.data.comments;
   });
 };
+
+export const updateVotes = (comment_id, votes) => {
+  // console.log(comment_id, votes);
+  return newsApi
+    .patch(`/comments/${comment_id}`, { inc_votes: votes })
+    .then((res) => {
+      return res.data.updatedComment.votes;
+    });
+};
