@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/user";
+import { AppContext } from "../contexts/contexts";
 import { getUsers } from "../utils/api";
 import { Link } from "react-router-dom";
 export default function Home() {
   //   console.log("here <===");
   const [users, setUsers] = useState([]);
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(AppContext);
   useEffect(() => {
     getUsers().then((users) => {
       setUsers(users);
