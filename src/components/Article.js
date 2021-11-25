@@ -18,14 +18,14 @@ export default function Article({ id, title, author, body }) {
   const { setArticleId } = useContext(AppContext);
   return (
     <ExpandArticle title={title}>
-      <p>{body}</p>
+      <p>{body.slice(0, 40)}...</p>
       <Link
         onClick={() => {
           setArticleId(id);
         }}
         to={`/articles/${id}`}
       >
-        Go to article page
+        Read More
       </Link>
     </ExpandArticle>
   );
