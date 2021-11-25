@@ -18,6 +18,13 @@ export default function Votes({ comment }) {
       >
         +
       </button>
+      <button
+        onClick={(e) => handleVote(e, -1)}
+        value={comment.votes}
+        name={comment.comment_id}
+      >
+        -
+      </button>
     </div>
   );
 }
