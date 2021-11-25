@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from "react";
-import { UserContext } from "../contexts/user";
+import { AppContext } from "../contexts/contexts";
 import { Navigate } from "react-router-dom";
 import { getTopics } from "../utils/api";
 export default function Topics() {
   const [topics, setTopics] = useState({});
   const [isLoading, setLoading] = useState(true);
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(AppContext);
 
   useEffect(() => {
     setLoading(true);
