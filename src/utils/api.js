@@ -32,3 +32,9 @@ export const getAuthorName = (username) => {
     return res.data.user[0].name;
   });
 };
+
+export const getComments = (article_id) => {
+  return newsApi.get(`/articles/${article_id}/comments`).then((res) => {
+    return res.data.comments;
+  });
+};
