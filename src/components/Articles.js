@@ -38,7 +38,6 @@ export default function Articles() {
               <Article
                 id={article.article_id}
                 title={article.title}
-                author={article.author}
                 body={article.body}
               />
             </li>
