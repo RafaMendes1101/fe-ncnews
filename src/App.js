@@ -15,7 +15,7 @@ function App() {
     avatar_url: "",
     name: "",
   });
-  const [articleId, setArticleId] = useState(0);
+  const [articleId, setArticleId] = useState("");
 
   return (
     <BrowserRouter>
@@ -29,7 +29,7 @@ function App() {
             <Route path="/articles" element={<Articles />} />
             <Route path="/" element={<Home />} />
             <Route path="/topics" element={<Topics />} />
-            <Route path={`/articles/${articleId}`} element={<ArticleById />} />
+            <Route path="/articles/:article_id" element={<ArticleById />} />
           </Routes>
         </div>
       </AppContext.Provider>
