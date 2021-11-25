@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { AppContext } from "../contexts/contexts";
 const ExpandArticle = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => {
@@ -12,11 +14,20 @@ const ExpandArticle = (props) => {
     </div>
   );
 };
-export default function Article({ title, author, body }) {
+export default function Article({ id, title, author, body }) {
+  const { setArticleId } = useContext(AppContext);
   return (
     <ExpandArticle title={title}>
       <p>{body}</p>
       <p>{author}</p>
+      <Link
+        onClick={() => {
+          setArticleId(id);
+        }}
+        to={`/articles/${id}`}
+      >
+        Go to article page
+      </Link>
     </ExpandArticle>
   );
 }
