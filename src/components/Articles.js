@@ -26,7 +26,7 @@ export default function Articles() {
   if (isLoading) return <p>Loading...</p>;
   if (currentUser.username === "") {
     alert("set a user");
-    return <Navigate to="/home" />;
+    return <Navigate to="/" />;
   }
   return (
     <main className="Articles">

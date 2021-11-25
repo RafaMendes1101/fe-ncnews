@@ -22,7 +22,7 @@ export default function Topics() {
   if (isLoading) return <p>Loading...</p>;
   if (currentUser.username === "") {
     alert("set a user");
-    return <Navigate to="/home" />;
+    return <Navigate to="/" />;
   }
 
   return (
