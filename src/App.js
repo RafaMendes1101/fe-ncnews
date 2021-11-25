@@ -4,9 +4,10 @@ import Header from "./components/Header";
 import Nav from "./components/Nav";
 import Articles from "./components/Articles";
 import Home from "./components/Home";
-import { UserContext } from "./contexts/user";
+import { AppContext } from "./contexts/contexts";
 import { useState } from "react";
 import Topics from "./components/Topics";
+import ArticleById from "./components/ArticleById";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({
@@ -14,10 +15,13 @@ function App() {
     avatar_url: "",
     name: "",
   });
+  const [articleId, setArticleId] = useState(0);
 
   return (
     <BrowserRouter>
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <AppContext.Provider
+        value={{ currentUser, setCurrentUser, articleId, setArticleId }}
+      >
         <div className="App">
           <Header />
           <Nav />
@@ -25,9 +29,10 @@ function App() {
             <Route path="/articles" element={<Articles />} />
             <Route path="/" element={<Home />} />
             <Route path="/topics" element={<Topics />} />
+            <Route path={`/articles/${articleId}`} element={<ArticleById />} />
           </Routes>
         </div>
-      </UserContext.Provider>
+      </AppContext.Provider>
     </BrowserRouter>
   );
 }
