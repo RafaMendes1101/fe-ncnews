@@ -26,3 +26,9 @@ export const getTopics = () => {
     return res.data.topics;
   });
 };
+
+export const getAuthorName = (username) => {
+  return newsApi.get(`/users/${username}`).then((res) => {
+    return res.data.user[0].name;
+  });
+};
