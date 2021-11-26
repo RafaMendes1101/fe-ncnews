@@ -57,3 +57,9 @@ export const postComment = (article_id, commentObj) => {
       console.log(err);
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return newsApi.delete(`comments/${comment_id}`).then((res) => {
+    return "Comment deleted";
+  });
+};
