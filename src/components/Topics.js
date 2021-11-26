@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { AppContext } from "../contexts/contexts";
 import { Navigate } from "react-router-dom";
 import { getTopics } from "../utils/api";
+import Topic from "./Topic";
 export default function Topics() {
   const [topics, setTopics] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -30,7 +31,11 @@ export default function Topics() {
       <h1>Topics</h1>
       <ul>
         {topics.map((topic) => {
-          return <li key={topic.slug}>{topic.slug}</li>;
+          return (
+            <li key={topic.slug}>
+              <Topic slug={topic.slug} description={topic.description} />
+            </li>
+          );
         })}
       </ul>
     </main>
