@@ -11,7 +11,7 @@ export default function Votes({ votes, id, type }) {
   };
   return (
     <div>
-      Votes: {vote}{" "}
+      Votes: {votes + vote}{" "}
       <button onClick={(e) => handleVote(e, 1)} value={votes} name={id}>
         +
       </button>
