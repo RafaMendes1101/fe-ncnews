@@ -1,28 +1,21 @@
 import { updateVotes } from "../utils/api";
 import { useState } from "react";
-export default function Votes({ comment }) {
+export default function Votes({ votes, id, type }) {
   const [vote, setVote] = useState(0);
   const handleVote = (e, incVote) => {
     setVote((prevVote) => {
       return prevVote + incVote;
     });
-    updateVotes(e.target.name, incVote);
+
+    updateVotes(e.target.name, incVote, type);
   };
   return (
     <div>
-      Votes: {comment.votes + vote}{" "}
-      <button
-        onClick={(e) => handleVote(e, 1)}
-        value={comment.votes}
-        name={comment.comment_id}
-      >
+      Votes: {vote}{" "}
+      <button onClick={(e) => handleVote(e, 1)} value={votes} name={id}>
         +
       </button>
-      <button
-        onClick={(e) => handleVote(e, -1)}
-        value={comment.votes}
-        name={comment.comment_id}
-      >
+      <button onClick={(e) => handleVote(e, -1)} value={votes} name={id}>
         -
       </button>
     </div>
