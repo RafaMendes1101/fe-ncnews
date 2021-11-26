@@ -39,12 +39,20 @@ export const getComments = (article_id) => {
   });
 };
 
-export const updateVotes = (comment_id, votes) => {
-  return newsApi
-    .patch(`/comments/${comment_id}`, { inc_votes: votes })
-    .then((res) => {
-      return res.data.updatedComment.votes;
-    });
+export const updateVotes = (id, votes, type) => {
+  if (type === "comment") {
+    return newsApi
+      .patch(`/comments/${id}`, { inc_votes: votes })
+      .then((res) => {
+        return res.data.updatedComment.votes;
+      });
+  } else {
+    return newsApi
+      .patch(`/articles/${id}`, { inc_votes: votes })
+      .then((res) => {
+        return res.data.updatedArticle.votes;
+      });
+  }
 };
 
 export const postComment = (article_id, commentObj) => {
