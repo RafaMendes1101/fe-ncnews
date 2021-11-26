@@ -47,3 +47,14 @@ export const updateVotes = (comment_id, votes) => {
       return res.data.updatedComment.votes;
     });
 };
+
+export const postComment = (article_id, commentObj) => {
+  return newsApi
+    .post(`articles/${article_id}/comments`, commentObj)
+    .then((res) => {
+      return res.data.newComment;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
