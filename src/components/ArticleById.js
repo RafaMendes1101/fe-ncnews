@@ -1,6 +1,11 @@
 import { useEffect, useState, useContext } from "react";
 import { AppContext } from "../contexts/contexts";
-import { getArticleById, getAuthorName, getComments } from "../utils/api";
+import {
+  getArticleById,
+  getAuthorName,
+  getComments,
+  postComment,
+} from "../utils/api";
 import { Navigate } from "react-router-dom";
 import Votes from "./Votes";
 export default function ArticleById() {
@@ -49,12 +54,14 @@ export default function ArticleById() {
     );
   };
 
-  const addComment = () => {};
-
+  const addComment = () => {
+    setNewComment(commentObj);
+    postComment(articleId, newComment);
+  };
+  let commentObj = {};
   const createComment = (name, value) => {
-    setNewComment((currentComment) => {
-      console.log(name, value, currentComment);
-    });
+    commentObj["author"] = name;
+    commentObj["body"] = value;
   };
 
   const handleChange = (e) => {
@@ -97,10 +104,10 @@ export default function ArticleById() {
           <input
             id="comment-area"
             onChange={handleChange}
-            name={currentUser.name}
+            name={currentUser.username}
           />
-          <button onClick={addComment}>Submit</button>
         </form>
+        <button onClick={addComment}>Submit</button>
       </ExpandAddComment>
     </main>
   );
