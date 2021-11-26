@@ -5,6 +5,7 @@ import {
   getAuthorName,
   getComments,
   postComment,
+  deleteComment,
 } from "../utils/api";
 import { Navigate } from "react-router-dom";
 import Votes from "./Votes";
@@ -88,6 +89,17 @@ export default function ArticleById() {
                   <p>{comment.body}</p>
                   <span>
                     <Votes comment={comment} />
+                    {comment.author === currentUser.username ? (
+                      <button
+                        onClick={() => {
+                          deleteComment(comment.comment_id);
+                        }}
+                      >
+                        Delete Comment
+                      </button>
+                    ) : (
+                      <></>
+                    )}
                   </span>
                 </li>
               );
