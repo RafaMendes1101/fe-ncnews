@@ -57,7 +57,11 @@ export default function ArticleById() {
   let commentObj = {};
   const addComment = (e) => {
     e.preventDefault();
-    postComment(articleId, commentObj);
+    postComment(articleId, commentObj).then(() => {
+      getComments(article.article_id).then((comments) => {
+        setComments(comments);
+      });
+    });
   };
   const createComment = (name, value) => {
     commentObj["author"] = name;
@@ -91,8 +95,14 @@ export default function ArticleById() {
                     <Votes comment={comment} />
                     {comment.author === currentUser.username ? (
                       <button
-                        onClick={() => {
-                          deleteComment(comment.comment_id);
+                        onClick={(e) => {
+                          deleteComment(comment.comment_id).then(() => {
+                            getComments(article.article_id).then((comments) => {
+                              setComments(comments);
+                            });
+                          });
+
+                          // console.log(comment);
                         }}
                       >
                         Delete Comment
