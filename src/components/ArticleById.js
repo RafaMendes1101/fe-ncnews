@@ -13,7 +13,6 @@ export default function ArticleById() {
   const [article, setArticle] = useState({});
   const [authorName, setAuthorName] = useState("");
   const [comments, setComments] = useState({});
-  const [newComment, setNewComment] = useState({ author: "", body: "" });
   const [isOpen, setIsOpen] = useState(false);
   const [isAddCommentOpen, setIsAddCommentOpen] = useState(false);
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function ArticleById() {
     };
     return (
       <div className="Comments">
-        <span onClick={toggleIsOpen}>See comments</span>
+        <span onClick={toggleIsOpen}>See Comments</span>
         {isOpen && props.children}
       </div>
     );
@@ -54,11 +53,11 @@ export default function ArticleById() {
     );
   };
 
-  const addComment = () => {
-    setNewComment(commentObj);
-    postComment(articleId, newComment);
-  };
   let commentObj = {};
+  const addComment = (e) => {
+    e.preventDefault();
+    postComment(articleId, commentObj);
+  };
   const createComment = (name, value) => {
     commentObj["author"] = name;
     commentObj["body"] = value;
@@ -100,14 +99,14 @@ export default function ArticleById() {
       </ExpandComments>
       <ExpandAddComment>
         <h2>Add Comment</h2>
-        <form>
+        <form onSubmit={addComment}>
           <input
             id="comment-area"
             onChange={handleChange}
             name={currentUser.username}
           />
+          <input type="submit" />
         </form>
-        <button onClick={addComment}>Submit</button>
       </ExpandAddComment>
     </main>
   );
