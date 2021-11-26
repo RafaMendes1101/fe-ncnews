@@ -8,8 +8,9 @@ export default function ArticleById() {
   const [article, setArticle] = useState({});
   const [authorName, setAuthorName] = useState("");
   const [comments, setComments] = useState({});
+  const [newComment, setNewComment] = useState({ author: "", body: "" });
   const [isOpen, setIsOpen] = useState(false);
-
+  const [isAddCommentOpen, setIsAddCommentOpen] = useState(false);
   useEffect(() => {
     getArticleById(articleId).then((article) => {
       setArticle(article);
@@ -18,6 +19,7 @@ export default function ArticleById() {
       });
     });
   }, [articleId]);
+
   const ExpandComments = (props) => {
     const toggleIsOpen = () => {
       getComments(article.article_id).then((comments) => {
@@ -32,6 +34,32 @@ export default function ArticleById() {
       </div>
     );
   };
+  const ExpandAddComment = (props) => {
+    const toggleIsOpen = () => {
+      getComments(article.article_id).then((comments) => {
+        setComments(comments);
+      });
+      setIsAddCommentOpen((prevIsOpen) => !prevIsOpen);
+    };
+    return (
+      <div className="AddComment">
+        <span onClick={toggleIsOpen}>Add Comment</span>
+        {isAddCommentOpen && props.children}
+      </div>
+    );
+  };
+
+  const addComment = () => {};
+
+  const createComment = (name, value) => {
+    setNewComment((currentComment) => {
+      console.log(name, value, currentComment);
+    });
+  };
+
+  const handleChange = (e) => {
+    createComment(e.target.name, e.target.value);
+  };
 
   if (currentUser.username === "") {
     alert("set a user");
@@ -45,7 +73,7 @@ export default function ArticleById() {
       </p>
       <p>{article.body}</p>
       <ExpandComments>
-        <h1>Comments</h1>
+        <h2>Comments</h2>
         <ul>
           {comments.length > 0 ? (
             comments.map((comment) => {
@@ -63,6 +91,17 @@ export default function ArticleById() {
           )}
         </ul>
       </ExpandComments>
+      <ExpandAddComment>
+        <h2>Add Comment</h2>
+        <form>
+          <input
+            id="comment-area"
+            onChange={handleChange}
+            name={currentUser.name}
+          />
+          <button onClick={addComment}>Submit</button>
+        </form>
+      </ExpandAddComment>
     </main>
   );
 }
