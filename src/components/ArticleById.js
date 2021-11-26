@@ -83,6 +83,7 @@ export default function ArticleById() {
         Written by: <strong>{authorName}</strong>
       </p>
       <p>{article.body}</p>
+      <Votes votes={article.votes} id={article.article_id} type="article" />
       <ExpandComments>
         <h2>Comments</h2>
         <ul>
@@ -92,7 +93,11 @@ export default function ArticleById() {
                 <li key={comment.comment_id}>
                   <p>{comment.body}</p>
                   <span>
-                    <Votes comment={comment} />
+                    <Votes
+                      votes={comment.votes}
+                      id={comment.comment_id}
+                      type="comment"
+                    />
                     {comment.author === currentUser.username ? (
                       <button
                         onClick={(e) => {
@@ -101,8 +106,6 @@ export default function ArticleById() {
                               setComments(comments);
                             });
                           });
-
-                          // console.log(comment);
                         }}
                       >
                         Delete Comment
