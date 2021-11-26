@@ -33,7 +33,11 @@ export default function Topics() {
         {topics.map((topic) => {
           return (
             <li key={topic.slug}>
-              <Topic slug={topic.slug} description={topic.description} />
+              <Topic
+                key={topic.slug}
+                slug={topic.slug}
+                description={topic.description}
+              />
             </li>
           );
         })}

@@ -39,6 +39,7 @@ export default function Topic({ description, slug }) {
       {topicArticles.map((topicArticle) => {
         return (
           <Article
+            key={topicArticle.article_id}
             id={topicArticle.article_id}
             title={topicArticle.title}
             body={topicArticle.body}
